@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/a95e826942.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./style/style.css" />
+    <title>Home | Burguers</title>
+  </head>
+  <body>
+    <header>
+      <a href="" class="title"
+        ><img src="./img/logooburguer.png" alt="" class="logoburguer"
+      /></a>
+      <nav>
+        <label for="menu-toggle" class="menu-label">
+            <i class="fa-solid fa-bars menu-icon"></i>
+        </label>
+        <label for="" class="cart-label">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </label>
+        <input type="checkbox" id="menu-toggle" class="open-menu" />
+        <ul class="navbar-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#menu">Menú</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <input type="text" id="nombre" placeholder="Search" /><i
+              class="fa-solid fa-magnifying-glass"
+            ></i>
+          </li>
+          <i class="fa-regular fa-user"></i>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <article>
+        <section id="main">
+          <div class="container-principal">
+            <div class="info-main">
+              <span>OUR CLASSIC</span>
+              <h1>BURGUER</h1>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
+                voluptates ducimus eaque nisi, unde placeat vero, recusandae
+                eligendi nesciunt doloremque doloribus repellat tempora
+                explicabo a impedit optio cum debitis veniam?
+              </p>
+              <a href="">Visit More</a>
+            </div>
+          </div>
+          <div class="container-principal">
+            <img src="./img/burguerprincipal.png" alt="" />
+          </div>
+          <div class="container-principal"></div>
+        </section>
+        <section id="redes">
+          <div class="redes-color">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-twitter"></i>
+          </div>
+        </section>
+      </article>
+      <section id="hamburguesas">
+        <h3>Menu de Hamburguesas</h3>
+        <div class="categories">
+          <button class="category active">Todas</button>
+          <button class="category" data-category="american">
+            American Burguers
+          </button>
+          <button class="category" data-category="venezolan">
+            Venezolan Burguers
+          </button>
+          <button class="category" data-category="patagonia">
+            Patagonia Burguers
+          </button>
+          <button class="category" data-category="papas">Papas Fritas</button>
+          <button class="category" data-category="nuggets">Nuggets</button>
+        </div>
+
+        <div class="products-container"></div>
+        <button class="btn-load">Ver Más</button>
+      </section>
+    </main>
+    <footer id="contacto">
+      <h2>Contactanos</h2>
+      <form action="#" class="form">
+        <ul>
+          <li>
+            <input type="text" id="nombre" placeholder="Name" />
+          </li>
+          <li>
+            <input type="email" id="nombre" placeholder="Email" />
+          </li>
+          <li>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              placeholder="Phone"
+            />
+          </li>
+          <li>
+            <label for="message"></label>
+            <textarea
+              name="message"
+              placeholder="Tu mensaje"
+              id="message_input"
+              cols="30"
+              rows="10"
+              required
+            ></textarea>
+          </li>
+          <li class="form-btn">
+            <a href="#">Enviar</a>
+          </li>
+        </ul>
+      </form>
+      <div>
+        <div>
+          <i class="fa-solid fa-location-dot"></i>
+          <h4>Uspallata, Mendoza</h4>
+        </div>
+        <div>
+          <i class="fa-solid fa-phone"></i>
+          <h4>+54-297-6865598</h4>
+        </div>
+        <div>
+          <i class="fa-regular fa-envelope"></i>
+          <h4>info@campingevents.com.ar</h4>
+        </div>
+      </div>
+    </footer>
+    <div class="add-modal"></div>
+    <script src="./js/data.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,289 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+  color: white;
+}
+html,
+body {
+  height: 100% !important;
+}
+body {
+  background: linear-gradient(
+    to right,
+    white 0%,
+    white 50%,
+    black 50%,
+    black 100%
+  );
+}
+header {
+  display: flex;
+  height: 100px;
+  background: linear-gradient(
+    to right,
+    white 0%,
+    white 50%,
+    black 50%,
+    black 100%
+  );
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+}
+.logoburguer {
+  width: 90px;
+}
+nav {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+nav ul {
+  display: flex;
+  text-transform: uppercase;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+nav ul :nth-child(4) {
+  gap: 10px;
+}
+ul li input {
+  background: transparent;
+  outline: none;
+}
+ul li {
+  display: flex;
+  align-items: center;
+}
+.title {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+.container-principal {
+  display: flex;
+  flex: 1;
+}
+.container-principal div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container-principal img {
+  width: 660px;
+}
+.container-principal div h1,
+span {
+  color: chocolate;
+}
+.info-main a,
+p {
+  color: black;
+}
+main {
+  display: flex;
+  flex-direction: column;
+}
+article {
+  display: flex;
+  height: 89vh;
+  gap: 50px;
+  flex-direction: column;
+  padding: 50px 50px 0;
+}
+#main {
+  display: flex;
+}
+.redes-color {
+  display: flex;
+  justify-content: end;
+  gap: 40px;
+  font-size: 30px;
+}
+.redes-color i {
+  color: white;
+}
+#menu {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: rgb(85, 55, 16);
+}
+.container-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 30px;
+  padding: 50px;
+}
+.card-burguer {
+  display: flex;
+  width: 18%;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.363);
+}
+.card-burguer img {
+  width: 100%;
+}
+#hamburguesas {
+  background-color: rgb(85, 55, 16);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 50px 0;
+}
+.hidden{
+  display: none;
+}
+.cart {
+  position: absolute;
+  top: 65px;
+  right: 0;
+  padding: 50px 30px;
+  background: linear-gradient(to top), #121e3c, var(--backgroud);
+  border-left: 1px solid var(--nav-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  height: calc(100vh - 65px);
+  overflow-y: scroll;
+  z-index: 2;
+  min-width: 375px;
+  transform: translate(200%);
+  transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
+}
+.cart::-webkit-scrollbar{
+    display: none;
+}
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.products-container{
+  display: flex;
+  justify-content: space-evenly;
+  gap: 30px;
+  flex-wrap: wrap;
+  width: 80%;
+}
+.product{
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.363);
+  padding-bottom: 20px;
+}
+.product-top{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+.product-mid{
+  justify-content: space-around;
+  display: flex;
+  width: 100%;
+}
+.product-bot{
+
+  display: flex;
+  width: 100%;
+}
+.product-offer{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.product-info{
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+.product-user{
+  display: flex;
+}
+.offer-time{
+  display: flex;
+}
+.product img{
+  
+}
+#contacto {
+  display: flex;
+  background-color: black;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0;
+  gap: 30px;
+}
+.form {
+  display: flex;
+  justify-content: center;
+  width: 30%;
+}
+.form ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.form ul li {
+  justify-content: end;
+}
+.form ul li input {
+  width: 100%;
+}
+.form ul li textarea {
+  outline: none;
+  resize: none;
+  width: 100%;
+  background-color: transparent;
+}
+.menu-label{
+  display: none;
+}
+#menu-toggle{
+  display: none;
+}
+@media (max-width: 1200px) {
+  .navbar-list{
+    position: absolute;
+    top: 101px;
+    left: 5%;
+    right: 5%;
+    width: 90%;
+    flex-direction: column;
+    border-top: 0px!important;
+    border: 2px solid rgb(0, 204, 255);
+    border-radius: 0px 0px 15px 15px;
+    background: rgba(0, 0, 0, 0.63);;
+    padding: 45px 30px;
+    align-items: center;
+    gap: 25px;
+    z-index: 2;
+    display: none;
+}
+  .menu-label{
+    display: flex;
+    order: 2;
+    cursor: pointer;
+}
+  .menu-label i {
+    font-size: 28px;
+}
+  .open-menu{
+    display: flex;
+}
+}

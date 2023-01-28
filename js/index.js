@@ -173,6 +173,12 @@ const toggleCart = () => {
     ("show-overlay");
 };
 
+const renderCart = () => {
+  if (!cart.length) {
+    productsCart
+  }
+}
+
 const closeOnClick = (e) => {
     if (e.target.classList.contains
         ("navbar-link")) {

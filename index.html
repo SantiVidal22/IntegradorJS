@@ -20,21 +20,23 @@
         <label for="menu-toggle" class="menu-label">
             <i class="fa-solid fa-bars menu-icon"></i>
         </label>
-        <label for="" class="cart-label">
-            <i class="fa-solid fa-cart-shopping"></i>
-        </label>
         <input type="checkbox" id="menu-toggle" class="open-menu" />
         <ul class="navbar-list">
           <li><a href="index.html">Home</a></li>
-          <li><a href="#menu">Menú</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#hamburguesas">Menú</a></li>
+          <li><a href="#contacto">Contact</a></li>
           <li>
             <input type="text" id="nombre" placeholder="Search" /><i
               class="fa-solid fa-magnifying-glass"
             ></i>
           </li>
-          <i class="fa-regular fa-user"></i>
+          <a href="./login/login.html"><i class="fa-regular fa-user"></i></a>
         </ul>
+        <label for="cart-toggle" class="cart-label">
+          <i class="fa-solid fa-cart-shopping cart-icon"></i>
+        </label>
+        <input type="checkbox" id="cart-toggle"/>
+        <div class="cart"></div>
       </nav>
     </header>
     <main>
@@ -56,7 +58,10 @@
           <div class="container-principal">
             <img src="./img/burguerprincipal.png" alt="" />
           </div>
-          <div class="container-principal"></div>
+          <div class="container-principal">
+            <h3>Benefits</h3>
+            <p>Vivi una experiencia de sabor unica al probar nuestras hamburguesas!</p>
+          </div>
         </section>
         <section id="redes">
           <div class="redes-color">

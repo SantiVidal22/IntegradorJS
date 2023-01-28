@@ -30,9 +30,7 @@ const deleteBtn = document.querySelector(".btn-delete");
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const saveLocalStorage = (cartList) => {
-  localStorage.setItem("cart", JSON.stringify(cartList));
-};
+
 
 const renderProduct = (product) => {
   const { id, name, bid, user, userImg, cardImg } = product;

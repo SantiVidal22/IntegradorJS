@@ -335,27 +335,37 @@ article {
 
 .cart {
   position: absolute;
-  top: 100px; /*Porque el header ocupaba 65px de alto*/
+  top: 65px;
   right: 0;
   padding: 50px 30px;
   background: linear-gradient(to top, #121e3c, var(--background));
   border-left: 1px solid var(--nav-bg);
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 30px;
   height: calc(100vh - 65px);
   overflow-y: scroll;
+  overflow-x: hidden;
   z-index: 2;
+  min-width: 375px;
+  transform: translate(200%);
+  transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
 }
 
-.cart::-webkit-scrollbar {
-  display: none;
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.cart h2 {
-  color: var(--text-white);
-  font-size: 20px;
-  font-weight: 600;
+.open-cart {
+  transform: translate(0%);
+  transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
+}
+
+.empty-msg {
+  color: var(--text-gray);
+  font-size: 14px;
 }
 
 .cart-item {
@@ -427,6 +437,7 @@ article {
 .divider {
   margin-top: 20px;
   border: 0.5px solid var(--electric);
+  width: 100%;
 }
 
 .cart-total {
@@ -446,6 +457,46 @@ article {
   font-size: 18px;
 }
 
+
+.btn-add,
+.btn-buy,
+.btn-delete {
+  cursor: pointer;
+  padding: 10px 35px;
+  color: var(--bg-white);
+  border-radius: 10px;
+  border: none;
+  transition: 0.3s all ease-out;
+}
+
+.btn-buy,
+.btn-add {
+  background: var(--primary);
+}
+
+.btn-buy,
+.btn-delete {
+  width: 100%;
+}
+
+.btn-delete {
+  border: 2px solid var(--primary);
+  background-color: transparent;
+}
+
+.btn-delete:hover {
+  background: var(--primary);
+  transition: 0.3s all ease-in;
+}
+
+.btn-load {
+  background: none;
+  border: 1px solid var(--electric);
+  padding: 10px 35px;
+  color: var(--bg-white);
+  border-radius: 10px;
+  cursor: pointer;
+}
 
 @media (max-width: 600px) {
   #main{

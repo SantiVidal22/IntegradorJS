@@ -35,12 +35,13 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 const renderProduct = (product) => {
   const { id, name, bid, user, userImg, cardImg } = product;
   return `
-    <div class="product">
+    <div class="cart-item">
         <img src="${cardImg}" alt="${name}" />
-        <div class="product-info">
+        <div class="item-info">
             <div class="product-top">
-                <h3>${name}</h3>
+                <h3 class"item-title">${name}</h3>
                 <p>Current Bid</p>
+                <span class="item-price">${bid}</span>
             </div>
             <div class="product-mid">
                 <div class="product-user">
@@ -48,23 +49,6 @@ const renderProduct = (product) => {
                     <p>@${user}</p>
                 </div>
                 <span>${bid} ARS</span>
-            </div>
-            <div class="product-bot">
-                <div class="product-offer">
-                    <div class="offer-time">
-                        <img src="" alt="" />
-                        <p>05:12:07</p>
-                    </div>
-                    <button
-                    class="btn-add"
-                    data-id="${id}"
-                    data-name="${name}"
-                    data-bid="${bid}"
-                    data-img="${cardImg}"
-                    >
-                        Add
-                    </button>
-                </div>
             </div>
         </div>
     </div>
@@ -198,28 +182,28 @@ const closeOnOverlayClick = () =>{
     ("show.overlay");
 };
 
-const renderCardProduct = (cartProduct) => {
-  const {id, name, bid, img, quantity} = cartProduct
+const renderCardProduct = (productsCart) => {
+  const {id, name, bid, img, quantity} = productsCart
   return `
   <div class="cart-item">
-      <img src=${img} alt="Nft del carrito" />
-      <div class="item-info">
-        <h3 class="item-title">${name}</h3>
-        <p class="item-bid">current bid</p>
-        <span class="item-price">${bid} ETH</span>
-      </div>
-      <div class="item-handler">
-        <span class="quantity-handler down" data-id=${id}> - </span>
-        <span class="item-quantity">${quantity}</span>
-        <span class="quantity-handler up" data-id=${id}> + </span>
-      </div>
-  </div>
+		<img src=${img} alt="Nft del carrito" />
+		<div class="item-info">
+			<h3 class="item-title">${name}</h3>
+			<p class="item-bid">Current bid</p>
+			<span class="item-price">${bid} ETH</span>
+		</div>
+		<div class="item-handler">
+			<span class="quantity-handler down" data-id=${id}>-</span>
+			<span class="item-quantity">${quantity}</span>
+			<span class="quantity-handler up" data-id=${id}>+</span>
+		</div>
+	</div>
   `;
 };
 
 const renderCart = () => {
   if (!cart.length) {
-    productsCart.innerHTML= `<p class= "empty-msg">No hay productos en el carrito.</p>`;
+    productsCart.innerHTML= `<p class="empty-msg">No hay productos en el carrito.</p>`;
     return
   }
   productsCart.innerHTML = cart.map(renderCardProduct).join("");

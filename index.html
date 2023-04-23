@@ -32,14 +32,27 @@
           </li>
           <a href="./login/login.html"><i class="fa-regular fa-user"></i></a>
         </ul>
-        <label for="cart-toggle" class="cart-label">
-          <i class="fa-solid fa-cart-shopping cart-icon "></i>
-        </label>
-        <input type="checkbox" id="cart-toggle"/>
+
+        <div class="cart-label">
+          <i class="fa-solid fa-cart-shopping cart-icon">
+            <div class="cart-bubble">0</div>
+          </i>
+        </div>
 
         <div class="cart">
           <h2>Tus NFTs</h2>
+          <div class="cart-container"></div>      
+
+          <span class="divider"></span>
+
+          <div class="cart-total">
+            <p>Total:</p>
+            <span class="total"></span>
+          </div>
+          <button class="btn-buy">Comprar</button>
+          <button class="btn-delete">Vaciar carrito</button>
         </div>
+
 
         <div class="overlay"></div>
 

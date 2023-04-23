@@ -171,12 +171,6 @@ const toggleCart = () => {
     ("show-overlay");
 };
 
-const renderCart = () => {
-  if (!cart.length) {
-    productsCart
-  }
-}
-
 const closeOnClick = (e) => {
     if (e.target.classList.contains
         ("navbar-link")) {
@@ -204,6 +198,33 @@ const closeOnOverlayClick = () =>{
     ("show.overlay");
 };
 
+const renderCardProduct = (cartProduct) => {
+  const {id, name, bid, img, quantity} = cartProduct
+  return `
+  <div class="cart-item">
+      <img src=${img} alt="Nft del carrito" />
+      <div class="item-info">
+        <h3 class="item-title">${name}</h3>
+        <p class="item-bid">current bid</p>
+        <span class="item-price">${bid} ETH</span>
+      </div>
+      <div class="item-handler">
+        <span class="quantity-handler down" data-id=${id}> - </span>
+        <span class="item-quantity">${quantity}</span>
+        <span class="quantity-handler up" data-id=${id}> + </span>
+      </div>
+  </div>
+  `;
+};
+
+const renderCart = () => {
+  if (!cart.length) {
+    productsCart.innerHTML= `<p class= "empty-msg">No hay productos en el carrito.</p>`;
+    return
+  }
+  productsCart.innerHTML = cart.map(renderCardProduct).join("");
+}
+
 const init = () => {
   renderProducts();
   categories.addEventListener("click", applyFilter);
@@ -213,6 +234,7 @@ const init = () => {
   barsMenu.addEventListener("click", closeOnClick);
   window.addEventListener("scroll", closeOnScroll);
   overlay.addEventListener("click", closeOnOverlayClick);
+  document.addEventListener("DOMContentLoaded", renderCart)
 };
 
 init();

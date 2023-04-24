@@ -28,31 +28,56 @@ const sucessModal = document.querySelector(".add-modal");
 
 const deleteBtn = document.querySelector(".btn-delete");
 
+console.dir(deleteBtn);
+
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-
+const saveLocalStorage = (cartList) => {
+	localStorage.setItem("cart", JSON.stringify(cartList));
+};
 
 const renderProduct = (product) => {
   const { id, name, bid, user, userImg, cardImg } = product;
   return `
-    <div class="cart-item">
-        <img src="${cardImg}" alt="${name}" />
-        <div class="item-info">
-            <div class="product-top">
-                <h3 class"item-title">${name}</h3>
-                <p>Current Bid</p>
-                <span class="item-price">${bid}</span>
-            </div>
-            <div class="product-mid">
-                <div class="product-user">
-                    <img src="${userImg}" alt="" />
-                    <p>@${user}</p>
-                </div>
-                <span>${bid} ARS</span>
-            </div>
-        </div>
-    </div>
-  `;
+  <div class="product">
+  <img src="${cardImg}" alt="${name}" />
+  <div class="product-info">
+      <!-- top -->
+      <div class="product-top">
+          <h3>${name}</h3>
+          <p>Current Bid</p>
+      </div>
+
+      <!-- mid -->
+      <div class="product-mid">
+          <div class="product-user">
+              <img src="${userImg}" alt="user" />
+              <p>@${user}</p>
+          </div>
+          <span>${bid} eTH</span>
+      </div>
+
+      <!-- bot -->
+      <div class="product-bot">
+          <div class="product-offer">
+              <div class="offer-time">
+                  <img src="./assets/img/fire.png" alt="" />
+                  <p>05:12:07</p>
+              </div>
+              <button
+                  class="btn-add"
+                  data-id="${id}"
+                  data-name="${name}"
+                  data-bid="${bid}"
+                  data-img="${cardImg}"
+              >
+                  Add
+              </button>
+          </div>
+      </div>
+  </div>
+</div>
+`;
 };
 
 const renderDividedProducts = (index = 0) => {
@@ -156,7 +181,7 @@ const toggleCart = () => {
 };
 
 const closeOnClick = (e) => {
-    if (e.target.classList.contains
+    if (!e.target.classList.contains
         ("navbar-link")) {
             return
         }
@@ -182,8 +207,8 @@ const closeOnOverlayClick = () =>{
     ("show.overlay");
 };
 
-const renderCardProduct = (productsCart) => {
-  const {id, name, bid, img, quantity} = productsCart
+const renderCardProduct = (cartProduct) => {
+  const {id, name, bid, img, quantity} = cartProduct;
   return `
   <div class="cart-item">
 		<img src=${img} alt="Nft del carrito" />
@@ -204,10 +229,164 @@ const renderCardProduct = (productsCart) => {
 const renderCart = () => {
   if (!cart.length) {
     productsCart.innerHTML= `<p class="empty-msg">No hay productos en el carrito.</p>`;
-    return
+    return;
   }
   productsCart.innerHTML = cart.map(renderCardProduct).join("");
 }
+
+const getCartTotal = () => {
+	return cart.reduce((acc, cur) => {
+		return acc + Number(cur.bid) * cur.quantity;
+	}, 0);
+};
+
+const showTotal = () => {
+	total.innerHTML = `${getCartTotal().toFixed(2)} eTH`;
+};
+
+const renderCartBubble = () => {
+	cartBubble.textContent = cart.reduce((acc, cur) => {
+		return acc + cur.quantity;
+	}, 0);
+};
+
+const disableBtn = (btn) => {
+	if (!cart.length) {
+		btn.classList.add("disabled");
+	} else {
+		btn.classList.remove("disabled");
+	}
+};
+
+const checkCartState = () => {
+	saveLocalStorage(cart);
+	renderCart();
+	showTotal();
+	disableBtn(buyBtn);
+	disableBtn(deleteBtn);
+	renderCartBubble();
+};
+
+const addProduct = (e) => {
+	if (!e.target.classList.contains("btn-add")) {
+		return;
+	}
+	const { id, name, bid, img } = e.target.dataset;
+
+	const product = productData(id, name, bid, img);
+
+	if (isExistingCartProduct(product)) {
+		addUnitToProduct(product);
+		showSuccessModal("Se agregó una unidad del producto al carrito");
+	} else {
+		createCartProduct(product);
+		showSuccessModal("El producto se ha agregado al carrito");
+	}
+
+	checkCartState();
+};
+
+const productData = (id, name, bid, img) => {
+	return { id, name, bid, img };
+};
+
+const isExistingCartProduct = (product) => {
+	return cart.find((item) => {
+		return item.id === product.id;
+	});
+};
+
+const addUnitToProduct = (product) => {
+	cart = cart.map((cartProduct) => {
+		return cartProduct.id === product.id
+			? { ...cartProduct, quantity: cartProduct.quantity + 1 }
+			: cartProduct;
+	});
+};
+
+const showSuccessModal = (msg) => {
+	successModal.classList.add("active-modal");
+	successModal.textContent = msg;
+	setTimeout(() => {
+		successModal.classList.remove("active-modal");
+	}, 1500);
+};
+
+const createCartProduct = (product) => {
+	cart = [
+		...cart,
+		{
+			...product,
+			quantity: 1,
+		},
+	];
+};
+
+const handleMinusBtnEvent = (id) => {
+	const existingCartProduct = cart.find((item) => {
+		return item.id === id;
+	});
+
+	if (existingCartProduct.quantity === 1) {
+		if (window.confirm("¿Desea eliminar el producto del carrito?")) {
+			removeProductFromCart(existingCartProduct);
+		}
+		return;
+	}
+
+	substractProductUnit(existingCartProduct);
+};
+
+const handlePlusBtnEvent = (id) => {
+	const existingCartProduct = cart.find((item) => {
+		return item.id === id;
+	});
+
+	addUnitToProduct(existingCartProduct);
+};
+
+const removeProductFromCart = (existingProduct) => {
+	cart = cart.filter((product) => product.id !== existingProduct.id);
+	checkCartState();
+};
+
+const substractProductUnit = (existingProduct) => {
+	cart = cart.map((product) => {
+		return product.id === existingProduct.id
+			? { ...product, quantity: Number(product.quantity) - 1 }
+			: product;
+	});
+};
+
+const handleQuantity = (e) => {
+	if (e.target.classList.contains("down")) {
+		handleMinusBtnEvent(e.target.dataset.id);
+	} else if (e.target.classList.contains("up")) {
+		handlePlusBtnEvent(e.target.dataset.id);
+	}
+	checkCartState();
+};
+
+const resetCartItems = () => {
+	cart = [];
+	checkCartState();
+};
+
+const completeCartAction = (confirmMsg, successMsg) => {
+	if (!cart.length) return;
+	if (window.confirm(confirmMsg)) {
+		resetCartItems();
+		alert(successMsg);
+	}
+};
+
+const completeBuy = () => {
+	completeCartAction("¿Desea completar su compra?", "¡Gracias por su compra!");
+};
+
+const deleteCart = () => {
+	completeCartAction("¿Desea eliminar su carrito?", "Carrito eliminado");
+};
 
 const init = () => {
   renderProducts();
@@ -219,6 +398,14 @@ const init = () => {
   window.addEventListener("scroll", closeOnScroll);
   overlay.addEventListener("click", closeOnOverlayClick);
   document.addEventListener("DOMContentLoaded", renderCart)
+  document.addEventListener("DOMContentLoaded", showTotal);
+  products.addEventListener("click", addProduct);
+  productsCart.addEventListener("click", handleQuantity);
+  buyBtn.addEventListener("click", completeBuy);
+	deleteBtn.addEventListener("click", deleteCart);
+	disableBtn(buyBtn);
+	disableBtn(deleteBtn);
+	renderCartBubble();
 };
 
 init();

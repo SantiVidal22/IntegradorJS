@@ -383,6 +383,25 @@ article {
   width: 65px;
 }
 
+.active-modal {
+  transform: translateY(0);
+  transition: all 0.5s ease-in;
+}
+
+.add-modal {
+  padding: 15px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-white);
+  background-color: green;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  transition: all 0.5s ease-out;
+  transform: translateY(200%);
+}
+
 .item-title {
   color: var(--text-white);
   font-weight: 600;
